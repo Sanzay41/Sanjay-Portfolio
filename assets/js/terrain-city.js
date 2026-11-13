@@ -748,6 +748,13 @@ export function createTerrainCity(opts) {
     get stage() { return Math.floor(s); },
     setBackground(c) { scene.fog.color.set(c); if (!raf) renderAt(s); },
     setShift(v) { shiftX = v; resize(); },
+    /* Change framing without resizing the canvas (used by the hero entrance). */
+    setView(shift, zoom) {
+      shiftX = shift; if (zoom) opts.zoom = zoom;
+      camBase.dist = (W / H < 1.2 ? 3000 : 2150) * (opts.zoom || 1);
+      if (shiftX && W / H > 1.3) camera.setViewOffset(W, H, -W * shiftX, 0, W, H); else camera.clearViewOffset();
+      camera.updateProjectionMatrix(); if (!raf) renderAt(s);
+    },
     renderAt, resize,
     stats: { plots: plots.length, buildings: bI.length, trees: forestItems.length + natItems.length, grid: NX + 'x' + NZ },
     dispose() { cancelAnimationFrame(raf); if (ro) ro.disconnect(); renderer.dispose(); },
