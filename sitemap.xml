@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://sanzay-portfolio.netlify.app/</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/about.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/gis-remote-sensing.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/planning.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/dharan.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/rakam-karnali.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/bheriganga.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/bharatpur.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/geobim.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/research.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/civil.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/skills.html</loc></url>
-<url><loc>https://sanzay-portfolio.netlify.app/contact.html</loc></url>
+<url><loc>https://sanzay-portfolio.netlify.app/</loc><lastmod>2026-11-13</lastmod><priority>1.0</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/about.html</loc><lastmod>2026-11-13</lastmod><priority>0.8</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/gis-remote-sensing.html</loc><lastmod>2026-11-13</lastmod><priority>0.8</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/planning.html</loc><lastmod>2026-11-13</lastmod><priority>0.9</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/dharan.html</loc><lastmod>2026-11-13</lastmod><priority>0.9</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/bheriganga.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/rakam-karnali.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/bharatpur.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/civil.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/geobim.html</loc><lastmod>2026-11-13</lastmod><priority>0.8</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/research.html</loc><lastmod>2026-11-13</lastmod><priority>0.8</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/skills.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/contact.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+<url><loc>https://sanzay-portfolio.netlify.app/tehrathum.html</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
 </urlset>
