@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sanzay-portfolio.netlify.app/sitemap.xml
