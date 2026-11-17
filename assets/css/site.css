@@ -460,7 +460,7 @@ footer li{margin:0}
 }
 
 /* ---------- responsive ---------- */
-@media (max-width:1180px){
+@media (max-width:1240px){
   .burger{display:inline-flex}
   .menu{position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--surface);padding:8px clamp(18px,3vw,32px) 18px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);display:none;max-height:calc(100vh - var(--nav-h));overflow-y:auto}
   .menu.open{display:flex}
@@ -537,7 +537,7 @@ footer li{margin:0}
 .cta{background:var(--surface-2);border-top:1px solid var(--line)}
 .cta .btn.secondary{background:var(--surface)}
 .menu a.section{color:var(--text);box-shadow:inset 0 -2px 0 var(--line-strong)}
-@media (max-width:1180px){.menu a.section{box-shadow:inset 3px 0 0 var(--line-strong);padding-left:12px}}
+@media (max-width:1240px){.menu a.section{box-shadow:inset 3px 0 0 var(--line-strong);padding-left:12px}}
 @media (max-width:720px){.track{border-top:0}.track li{border-top:1px solid var(--line)}}
 
 /* ---------- problem-solving cases ---------- */
@@ -594,7 +594,7 @@ footer li{margin:0}
 .chart .split{stroke:var(--line-strong);stroke-dasharray:3 4}
 .chart figcaption{font-size:var(--fs-caption);color:var(--text-2);padding:8px 2px 0}
 @media (max-width:720px){.cs-step{grid-template-columns:minmax(0,1fr);gap:2px}.sliders label{grid-template-columns:110px 1fr 24px}.figures[style*="repeat(3"]{grid-template-columns:minmax(0,1fr)!important}}
-@media (max-width:1300px) and (min-width:1181px){.menu a{padding:8px 7px;font-size:.84rem}}
+@media (max-width:1440px) and (min-width:1241px){.menu a{padding:8px 6px;font-size:.84rem}.menu .cv a{margin-left:2px}}
 @media (max-width:1500px){.brand small{display:none}}
 
 /* ---------- terrain-to-city hero background ---------- */

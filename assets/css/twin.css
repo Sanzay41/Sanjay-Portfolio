@@ -1,0 +1,79 @@
+/* City digital twin pages. Loaded only on digital-twin.html and twin-*.html. */
+.tw-stage{background:#0e1a26;color:#e3ebf2}
+.tw-view{position:relative;height:clamp(540px,78vh,820px);overflow:hidden}
+.tw-view canvas,.tw-view .tw-poster{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+.tw-view canvas{opacity:0;transition:opacity 1s ease}
+.tw-stage.is-live .tw-view canvas{opacity:1}
+.tw-stage.cut .tw-view canvas{animation:twcut .9s ease}
+@keyframes twcut{0%{filter:brightness(.35)}100%{filter:none}}
+.tw-view::after{content:"";position:absolute;inset:auto 0 0 0;height:80px;background:linear-gradient(180deg,transparent,#0e1a26);pointer-events:none}
+.tw-top{position:absolute;left:0;right:0;top:18px;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;pointer-events:none}
+.tw-stage .tc-stage{color:#fff;background:rgba(14,26,38,.74);border-color:rgba(255,255,255,.18)}
+.tw-stage .tc-progress{background:rgba(255,255,255,.18)}
+.tw-stage .tc-progress i{background:#5cc6d0}
+.tw-sim{font:600 .72rem var(--font-head);letter-spacing:.04em;color:#ffd38a;border:1px solid rgba(255,211,138,.5);border-radius:999px;padding:3px 9px;background:rgba(14,26,38,.6)}
+.tw-stage .tc-labels{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.tw-stage .tc-pin span{background:#fff;color:#102a43}
+.tw-stage .tc-pin::before{background:#5cc6d0;box-shadow:0 0 0 2px #fff}
+.tw-stage .tc-pin::after{background:rgba(255,255,255,.8)}
+/* dashboard */
+.tw-dash{position:absolute;right:clamp(12px,2vw,28px);top:64px;z-index:4;width:300px;max-height:calc(100% - 100px);overflow:auto;background:rgba(10,20,30,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px;opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.tw-stage.show-dash .tw-dash{opacity:1;transform:none;pointer-events:auto}
+.tw-dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font:600 .85rem var(--font-head);color:#fff}
+.tw-tiles{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tw-tile{border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 8px 5px;transition:border-color .3s,background .3s}
+.tw-tile span{display:block;font-size:.68rem;color:#a9bbcb;line-height:1.2}
+.tw-tile b{display:block;font:700 1rem var(--font-head);color:#fff;margin:2px 0;font-variant-numeric:tabular-nums}
+.tw-tile b em{font-style:normal}
+.tw-tile svg{width:100%;height:22px;display:block}
+.tw-tile polyline{fill:none;stroke:#5cc6d0;stroke-width:1.6;vector-effect:non-scaling-stroke}
+.tw-tile .fc{stroke:#ff8f7a;stroke-dasharray:3 3;stroke-width:1;vector-effect:non-scaling-stroke}
+.tw-tile.focus{border-color:#5cc6d0;background:rgba(92,198,208,.1)}
+.tw-tile.warn{border-color:#ff8f7a;background:rgba(255,120,100,.12)}
+.tw-tile.warn polyline{stroke:#ff8f7a}
+.tw-alerts{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:5px}
+.tw-alerts li{margin:0;font-size:.74rem;line-height:1.35;padding:6px 8px;border-radius:6px;border-left:3px solid #46c26b;background:rgba(255,255,255,.05);color:#dfe8ef}
+.tw-alerts li.warn{border-left-color:#ef8a3c}
+.tw-alerts li.fc{border-left-color:#ff5d5d;color:#fff}
+/* controls */
+.tw-bar{padding:6px 0 30px}
+.tw-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.tw-stage .btn{color:#06202a;background:#5cc6d0;border-color:#5cc6d0}
+.tw-stage .btn:hover{background:#7fd3dc;border-color:#7fd3dc;color:#06202a}
+.tw-ch{display:flex;flex-wrap:wrap;gap:6px}
+.tw-ch button{min-height:36px;padding:6px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);color:#e3ebf2;font:500 .84rem var(--font-head);cursor:pointer}
+.tw-ch button:hover{border-color:rgba(255,255,255,.55)}
+.tw-ch button[aria-pressed="true"]{background:#fff;color:#102a43;border-color:#fff}
+.tw-ch button.sc{padding:8px 16px}
+.tw-stage .note{color:#a9bbcb;border-color:rgba(255,255,255,.25);margin-top:16px}
+/* hub cards and stage navigation */
+.tw-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.tw-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px}
+.tw-card .tw-n{font:700 .8rem var(--font-head);color:var(--teal-ink)}
+.tw-card .badge{align-self:flex-start}
+.tw-card h3 a{color:inherit;text-decoration:none}
+.tw-card h3 a::after{content:"";position:absolute;inset:0}
+.tw-card:hover{border-color:var(--teal)}
+.tw-card p{font-size:var(--fs-small);color:var(--text-2);margin:0}
+.tw-pn{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:clamp(36px,4vw,52px)}
+.tw-pn a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:var(--radius);text-decoration:none;color:var(--text);font:600 1rem var(--font-head);background:var(--surface)}
+.tw-pn a:hover{border-color:var(--teal)}
+.tw-pn a .meta{display:block;font-weight:400;margin-bottom:2px}
+.tw-pn a.nx{text-align:right}
+/* homepage vision band */
+.tw-band-steps{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tw-band-steps li{margin:0}
+.tw-band-steps a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);text-decoration:none;font:500 .875rem var(--font-head)}
+.tw-band-steps a:hover{border-color:var(--teal);color:var(--teal-ink)}
+.tw-band-steps b{color:var(--teal-ink);font-size:.78rem}
+@media (max-width:1040px){
+  .tw-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tw-dash{position:relative;right:auto;top:auto;width:auto;max-height:none;margin:0 clamp(18px,3vw,32px);opacity:1;transform:none;display:none}
+  .tw-stage.show-dash .tw-dash{display:block}
+  .tw-view{height:auto}
+  .tw-view canvas,.tw-view .tw-poster{position:relative;height:clamp(380px,60vh,560px)}
+  .tw-view .tw-poster{position:absolute;top:0;height:clamp(380px,60vh,560px)}
+  .tw-stage .tc-labels{height:clamp(380px,60vh,560px)}
+  .tw-view::after{display:none}
+}
+@media (max-width:720px){.tw-cards,.tw-pn{grid-template-columns:minmax(0,1fr)}.tw-pn a.nx{text-align:left}}
