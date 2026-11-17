@@ -729,7 +729,7 @@ export function createTerrainCity(opts) {
     renderAt(s, time);
   }
   function renderAt(sv, t) {
-    const st = stateAt(sv); apply(st, t ?? time); placeCamera(t ?? time); renderer.render(scene, camera); updatePins(st);
+    const st = stateAt(sv); apply(st, t ?? time); placeCamera(t ?? time); if (opts.beforeRender) opts.beforeRender(camera, t ?? time, st); renderer.render(scene, camera); updatePins(st);
     const shown = st.mix > 0.5 ? (st.stage + 1) % STAGES.length : st.stage;
     if (shown !== lastStage) { lastStage = shown; onStage(shown, STAGES[shown]); }
     return st;
@@ -756,6 +756,8 @@ export function createTerrainCity(opts) {
       camera.updateProjectionMatrix(); if (!raf) renderAt(s);
     },
     renderAt, resize,
+    /* Read-only access for extensions (city digital twin layer). */
+    internals: { THREE, scene, camera, renderer, hN, hG, dev, slope, forest, fdist, NX, NZ, id, gx, gz, hAtG, hAtN, riverZ, riverHW, plots, roads, roadPolys, bI, bC, bldMesh, roofMesh, tankPt, culverts, ponds, P },
     stats: { plots: plots.length, buildings: bI.length, trees: forestItems.length + natItems.length, grid: NX + 'x' + NZ },
     dispose() { cancelAnimationFrame(raf); if (ro) ro.disconnect(); renderer.dispose(); },
   };
