@@ -7,6 +7,16 @@
   var playBtn = root.querySelector('[data-act="play"]'), replayBtn = root.querySelector('[data-act="replay"]'), allBtn = root.querySelector('[data-act="all"]');
   var sysBtns = Array.prototype.slice.call(root.querySelectorAll('[data-sys]'));
   var bb = null, visible = false, userPaused = false, selected = new Set(), loading = false;
+  /* Safety net: if the page stylesheet has not arrived (old cached CSS), apply the essential layout inline
+     so the model always fills the stage instead of rendering at the browser's default 300 x 150. */
+  var view = root.querySelector('.bim-view');
+  if (getComputedStyle(view).position !== 'relative') {
+    root.style.background = '#0f1b2a';
+    view.style.cssText = 'position:relative;height:clamp(520px,74vh,780px);overflow:hidden';
+    [canvas, root.querySelector('.bim-poster')].forEach(function (el) { if (el) el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover'; });
+    labels.style.cssText = 'position:absolute;inset:0;pointer-events:none;overflow:hidden';
+    var top = root.querySelector('.bim-top'); if (top) top.style.cssText = 'position:absolute;left:0;right:0;top:18px;z-index:3;display:flex;gap:12px;align-items:center';
+  }
   var NAMES = ['Existing topography', 'Basement excavation', 'Footings', 'Structural frame', 'Reinforcement', 'Plumbing and fire protection', 'HVAC', 'Electrical system', 'IoT sensors', 'Complete building'];
 
   function setLabel(i) { chip.textContent = 'Stage ' + (i + 1) + ' of 10: ' + NAMES[i]; bar.style.width = ((i + 1) * 10) + '%'; }
@@ -16,10 +26,11 @@
 
   function start() {
     if (bb || loading) return; loading = true;
-    import('./bim-build.js?v=2026-11-14').then(function (m) {
+    import('./bim-build.js?v=2026-11-17').then(function (m) {
       var low = window.innerWidth < 760 || (navigator.hardwareConcurrency || 8) <= 4;
       bb = m.createBimBuild({ canvas: canvas, labels: labels, quality: low ? 'low' : 'medium', maxDpr: 1.5, stageSeconds: 7, onStage: setLabel });
       root.classList.add('is-live');
+      var poster = root.querySelector('.bim-poster'); if (poster) poster.style.visibility = 'hidden';
       bb.setStage(0);
       if (visible && !userPaused) { bb.play(); setPlay(true); } else setPlay(false);
     }).catch(function (e) { if (window.console) console.warn('BIM model unavailable:', e); root.classList.add('is-static'); });

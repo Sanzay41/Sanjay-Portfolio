@@ -344,8 +344,9 @@ export function createBimBuild(opts) {
   /* ---------------- state ---------------- */
   const keys = Object.keys(Z);
   let explore = null; // Set of system keys when exploring
+  let wrapped = false; // first pass starts on bare terrain; later passes rewind from the finished building
   function stateAt(s) {
-    const n = STAGES.length, i = Math.floor(s) % n, f = s - Math.floor(s), prev = (i + n - 1) % n;
+    const n = STAGES.length, i = Math.floor(s) % n, f = s - Math.floor(s), prev = i === 0 && !wrapped ? 0 : (i + n - 1) % n;
     const e0 = clamp01(f / 0.6), e = e0 * e0 * (3 - 2 * e0), o = { stage: i, enter: e };
     for (const k of keys) o[k] = lerp(K[prev][k], K[i][k], e);
     return o;
@@ -419,7 +420,7 @@ export function createBimBuild(opts) {
     if (st.stage !== lastStage && !explore) { lastStage = st.stage; onStage(st.stage, STAGES[st.stage]); }
     return st;
   }
-  function frame(now) { raf = requestAnimationFrame(frame); const dt = last ? Math.min(0.1, (now - last) / 1000) : 0; last = now; time += dt; if (playing && !explore) s = (s + dt * SPEED) % STAGES.length; renderAt(s); }
+  function frame(now) { raf = requestAnimationFrame(frame); const dt = last ? Math.min(0.1, (now - last) / 1000) : 0; last = now; time += dt; if (playing && !explore) { const ns = s + dt * SPEED; if (ns >= STAGES.length) wrapped = true; s = ns % STAGES.length; } renderAt(s); }
   resize(); const ro = 'ResizeObserver' in window ? new ResizeObserver(() => { resize(); if (!raf) renderAt(s); }) : null; if (ro) ro.observe(canvas);
 
   return {
@@ -429,7 +430,7 @@ export function createBimBuild(opts) {
     stopLoop() { cancelAnimationFrame(raf); raf = 0; },
     resumeLoop() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } },
     get playing() { return playing; },
-    setStage(i) { explore = null; s = i; lastStage = -1; if (!raf) renderAt(s); },
+    setStage(i) { explore = null; s = i; if (i === 0) wrapped = false; lastStage = -1; if (!raf) renderAt(s); },
     explore(set) { explore = set && set.size ? new Set(set) : null; lastStage = -1; if (!raf) renderAt(s); },
     get exploring() { return !!explore; },
     renderAt, resize,
